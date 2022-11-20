@@ -2,6 +2,8 @@ package io.nayakmk.samples.tracing.controller;
 
 import io.nayakmk.samples.tracing.model.Author;
 import io.nayakmk.samples.tracing.model.Book;
+import io.opentracing.Tracer;
+import io.opentracing.util.GlobalTracer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -30,6 +32,9 @@ public class BookController {
 
     @GetMapping(path = "/book/{id}")
     public ResponseEntity<Book> getBook(@PathVariable String id) {
+        Tracer tracer =  GlobalTracer.get();
+        tracer.activeSpan().setTag("current-user", "nayakmk");
+        log.info("Current Span: {} ", tracer.activeSpan().toString());
         ResponseEntity<Author> response = restTemplate.getForEntity(authorServiceUrl +
                 "/author/1", Author.class);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)

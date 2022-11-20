@@ -18,13 +18,13 @@ Simply try to call a Book API and it inturn calls to read Author data. As a resu
 
 > http://localhost:8082/book/1
 
-![alt](./jaeger-ui.png)
+![alt](./images/jaeger-ui.png)
 
 > http://localhost:8081/library/1
 
-![alt](./jaeger-ui-library.png)
+## Custom Tags
 
-## Pending Works
+![alt](./images/custom-tags.png)
 
-OpenTelemetry Project
-Custom Tracing Params - Context
+![alt](./images/spring-logs-in-jaeger.png)
+
