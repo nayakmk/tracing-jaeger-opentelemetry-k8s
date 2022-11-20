@@ -38,11 +38,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     /*
-    Tracing - Jaeger, Zipkin, Brave ( OpenTracing )
+    Tracing - Open Tracing, Jaeger
      */
-    implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-    implementation 'io.opentracing.brave:brave-opentracing'
+    implementation 'io.opentracing:opentracing-api:0.33.0'
+    implementation 'io.opentracing.contrib:opentracing-spring-cloud-starter:0.5.9'
+    implementation 'io.jaegertracing:jaeger-client:1.8.1'
 }
 
 dependencyManagement {

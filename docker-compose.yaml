@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.13.1
+    ports:
+      - "16686:16686"
+    restart: on-failure
+    networks:
+      - tracing
+  book-service:
+    build: ./book-service
+    links:
+      - jaeger
+      - author-service
+    depends_on:
+      - jaeger
+      - author-service
+    ports:
+      - "8082:8082"
+    environment:
+      JAEGER_AGENT_HOST: jaeger
+      SERVICE_FORMATTER: book-service
+    networks:
+      - tracing
+  author-service:
+    build: ./author-service
+    links:
+      - jaeger
+    depends_on:
+      - jaeger
+    ports:
+      - "8083:8083"
+    environment:
+      JAEGER_AGENT_HOST: jaeger
+      SERVICE_FORMATTER: author-service
+    networks:
+      - tracing
+  library-service:
+    build: ./library-service
+    links:
+      - jaeger
+      - book-service
+    depends_on:
+      - jaeger
+    ports:
+      - "8081:8081"
+    environment:
+      JAEGER_AGENT_HOST: jaeger
+      SERVICE_FORMATTER: library-service
+    networks:
+      - tracing
+networks:
+  tracing: {}

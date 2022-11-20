@@ -23,17 +23,26 @@ ext {
 }
 
 dependencies {
-	    implementation project(':common-model')
+	implementation project(':common-model')
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-			runtimeOnly 'com.h2database:h2'
-			implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	/*
+    JPA - Hibernate
+     */
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	/*
+	Tracing - Open Tracing, Jaeger
+ */
+	implementation 'io.opentracing:opentracing-api:0.33.0'
+	implementation 'io.opentracing.contrib:opentracing-spring-cloud-starter:0.5.9'
+	implementation 'io.jaegertracing:jaeger-client:1.8.1'
 }
 
 dependencyManagement {

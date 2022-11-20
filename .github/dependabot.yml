@@ -1,0 +1,40 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/boook-service"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "docker"
+    directory: "/book-service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "gradle"
+    directory: "/author-service"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "docker"
+    directory: "/author-service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "gradle"
+    directory: "/library-service"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "docker"
+    directory: "/library-service"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
